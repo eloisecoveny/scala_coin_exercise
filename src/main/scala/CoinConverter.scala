@@ -1,8 +1,9 @@
 import scala.annotation.tailrec
+import scala.collection.immutable.ListMap
 
 object CoinConverter {
 
-  val coins = Map(
+  val coins = ListMap(
     "£2" -> 200,
     "£1" -> 100,
     "50p" -> 50,
@@ -28,8 +29,8 @@ object CoinConverter {
       // Reset `remaining` value and concat the coin type and no. iterations to `coinDenominations`
       if (coinIteration._2 > 0) {
         remaining = coinIteration._1
-        if (coinDenominations != "") coinDenominations.concat(s", ${coinIteration._2} x $coinType")
-        else coinDenominations.concat(s"${coinIteration._2} x $coinType")
+        if (coinDenominations != "") coinDenominations = coinDenominations.concat(s", ${coinIteration._2} x $coinType")
+        else coinDenominations = coinDenominations.concat(s"${coinIteration._2} x $coinType")
       } else {
         Nil
       }
